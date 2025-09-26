@@ -1,4 +1,6 @@
 using System;
+using ZebombaTest.Scripts.Command;
+using Zenject;
 
 namespace ZebombaTest.Scripts
 {
@@ -6,9 +8,12 @@ namespace ZebombaTest.Scripts
     {
         private Bootstrap.Bootstrap _bootstrap;
 
-        public ApplicationLaunch()
+        public ApplicationLaunch(
+            IInstantiator instantiator)
         {
             _bootstrap = new Bootstrap.Bootstrap();
+            
+            _bootstrap.AddCommand(instantiator.Instantiate<SetupUIRootCommand>());
             
             _bootstrap.AllCommandsDone += AllCommandsDoneHandler;
             _bootstrap.StartExecute();

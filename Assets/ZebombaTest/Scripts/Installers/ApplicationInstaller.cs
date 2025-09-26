@@ -9,8 +9,12 @@ namespace ZebombaTest.Scripts
             public override void InstallBindings()
             {
                 SystemInstaller.Install(Container);
-            
-            
+                UIInstaller.Install(Container);
+
+                Container
+                    .Bind<ApplicationLaunch>()
+                    .AsSingle()
+                    .NonLazy();
             }
         }
     }
