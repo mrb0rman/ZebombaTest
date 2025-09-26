@@ -1,25 +1,26 @@
 using System;
-using ZebombaTest.Scripts.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
 
 namespace ZebombaTest.Scripts
 {
     namespace Command
     {
-        public class SetupUIRootCommand : Command
+        public class SetupCameraCommand : Command
         {
-            private readonly IUIService _uiService;
+            private readonly IInstantiator _instantiator;
 
-            public SetupUIRootCommand(
-                IUIService uiService,
+            public SetupCameraCommand(
+                IInstantiator instantiator,
                 CommandStorage commandStorage) : base(commandStorage)
             {
-                _uiService = uiService;
+                _instantiator = instantiator;
             }
-            
             public override CommandResult Execute()
             {
-                _uiService.LoadWindows();
-                _uiService.InitWindows();
+                _instantiator.InstantiatePrefabResource("Camera");
                 
                 Done?.Invoke(this, EventArgs.Empty);
             
@@ -28,4 +29,3 @@ namespace ZebombaTest.Scripts
         }
     }
 }
-
