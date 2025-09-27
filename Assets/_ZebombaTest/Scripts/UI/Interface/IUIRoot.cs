@@ -7,6 +7,7 @@ namespace ZebombaTest.Scripts
         public interface IUIRoot
         {
             Transform Container { get; }
+            Camera Camera { get; set; }
         }
     }
     

@@ -18,7 +18,6 @@ namespace ZebombaTest.Scripts
             _bootstrap = new Bootstrap.Bootstrap();
             
             _bootstrap.AddCommand(instantiator.Instantiate<SetupUIRootCommand>());
-            _bootstrap.AddCommand(instantiator.Instantiate<SetupCameraCommand>());
             
             _bootstrap.AllCommandsDone += AllCommandsDoneHandler;
             _bootstrap.StartExecute();
@@ -27,7 +26,6 @@ namespace ZebombaTest.Scripts
         private void AllCommandsDoneHandler(object sender, EventArgs e)
         {
             _bootstrap.AllCommandsDone -= AllCommandsDoneHandler;
-            _uiService.Show<UIMainMenuWindow>();
         }
     }
 }

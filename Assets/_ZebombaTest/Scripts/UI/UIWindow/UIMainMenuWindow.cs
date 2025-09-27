@@ -2,7 +2,8 @@ using System;
 using Doozy.Runtime.UIManager;
 using Doozy.Runtime.UIManager.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
+using ZebombaTest.Scripts.GameSystem;
+using Zenject;
 
 namespace ZebombaTest.Scripts
 {
@@ -11,8 +12,15 @@ namespace ZebombaTest.Scripts
         public class UIMainMenuWindow : UIWindow
         {
             public Action StartGameEvent;
-            
+
             [SerializeField] private UIButton startButton;
+
+            private GameController _gameController;
+            [Inject]
+            private void Init(GameController gameController)
+            {
+                _gameController = gameController;
+            }
             
             private void Start()
             {
@@ -25,7 +33,8 @@ namespace ZebombaTest.Scripts
                 StartGameEvent?.Invoke();
                 
                 _uiService.Hide<UIMainMenuWindow>();
-                _uiService.Show<UIEndGameWindow>();
+                _uiService.Show<UIGameWindow>();
+                _gameController.Init();
             }
         }
     }

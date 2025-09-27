@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6592929848267592027}
+  - component: {fileID: -5422045166512548380}
   - component: {fileID: 4335460560578866223}
   - component: {fileID: 8539165059993909091}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: CameraView
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +34,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5422045166512548380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437954726089176134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a60f2fc95b6afb4c9f6f0f5cd28c130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 4335460560578866223}
 --- !u!20 &4335460560578866223
 Camera:
   m_ObjectHideFlags: 0

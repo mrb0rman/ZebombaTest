@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_ZebombaTest/Scenes/SceneContext.unity
+    guid: 0fdc67136fef45e41ac25bc3feb4549c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

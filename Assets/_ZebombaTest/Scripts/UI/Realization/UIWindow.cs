@@ -8,12 +8,15 @@ namespace ZebombaTest.Scripts
     {
         public abstract class UIWindow : MonoBehaviour, IUIWindow
         {
+            public Canvas Canvas => canvas;
             [SerializeField] protected UIContainer uiContainer;
+            [SerializeField] protected Canvas canvas;
             
             protected IUIService _uiService;
     
             [Inject]
-            private void Inject(IUIService uiService)
+            private void Inject(
+                IUIService uiService)
             {
                 _uiService = uiService;
             }

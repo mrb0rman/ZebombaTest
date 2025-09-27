@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace ZebombaTest.Scripts
 {
@@ -12,16 +12,19 @@ namespace ZebombaTest.Scripts
         {
             private readonly IInstantiator _instantiator;
             private readonly IUIRoot _uiRoot;
-        
+            private readonly CameraView _cameraView;
+
             private readonly Dictionary<Type, UIWindow> _viewStorage = new Dictionary<Type, UIWindow>();
             private Dictionary<Type, GameObject> _initWindows = new();
         
             public UIService(
                 IInstantiator instantiator,
-                IUIRoot uiRoot)
+                IUIRoot uiRoot,
+                CameraView cameraView)
             {
                 _instantiator = instantiator;
                 _uiRoot = uiRoot;
+                _cameraView = cameraView;
             }
             
             public T Show<T>() where T : UIWindow
@@ -61,13 +64,12 @@ namespace ZebombaTest.Scripts
 
             public void InitWindows()
             {
-                foreach (var uiWindow in _viewStorage)
+                foreach (var uiWindow in _viewStorage.Where(uiWindow => !_initWindows.ContainsKey(uiWindow.Key)))
                 {
-                    if (_initWindows.ContainsKey(uiWindow.Key)) continue;
-                    
+                    uiWindow.Value.Canvas.renderMode = RenderMode.ScreenSpaceCamera;
+                    uiWindow.Value.Canvas.worldCamera = _cameraView.Camera;
                     var view = _instantiator.InstantiatePrefab(_viewStorage[uiWindow.Key], _uiRoot.Container);
                     _initWindows.Add(uiWindow.Key, view);
-
                 }
             }
         }

@@ -10,7 +10,14 @@ namespace ZebombaTest.Scripts
             {
                 SystemInstaller.Install(Container);
                 UIInstaller.Install(Container);
-
+                
+                Container
+                    .Bind<CameraView>()
+                    .FromComponentInNewPrefabResource(ResourcesSourceConst.CameraSource)
+                    .AsSingle();
+                
+                GameSystemInstaller.Install(Container);
+                
                 Container
                     .Bind<ApplicationLaunch>()
                     .AsSingle()
